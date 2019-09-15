@@ -7,6 +7,9 @@
   "authors": [
     "NinjaPhenix"
   ],
+  "contact": {
+    "sources": "https://github.com/NinjaPhenix/CreativeButtonMover/"
+  },
   "license": "MIT",
   "icon": "assets/creativebuttonmover/icon.png",
   "environment": "client",

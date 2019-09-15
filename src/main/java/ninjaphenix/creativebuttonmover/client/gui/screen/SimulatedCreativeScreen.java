@@ -12,14 +12,15 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import ninjaphenix.creativebuttonmover.client.CreativeButtonMover;
 
+@SuppressWarnings("ConstantConditions")
 public class SimulatedCreativeScreen extends Screen
 {
-    public static final Identifier BACKGROUND_TEXTURE = new Identifier("textures/gui/container/creative_inventory/tab_item_search.png");
+    private static final Identifier BACKGROUND_TEXTURE = new Identifier("textures/gui/container/creative_inventory/tab_item_search.png");
     private static final Identifier TAB_TEXTURE = new Identifier("textures/gui/container/creative_inventory/tabs.png");
     private static final Identifier BUTTON_TEXTURE = new Identifier("fabric", "textures/gui/creative_buttons.png");
     private static final TextureManager textureManager = MinecraftClient.getInstance().getTextureManager();
-    private static int containerHeight = 136;
-    private static int containerWidth = 195;
+    private static final int containerHeight = 136;
+    private static final int containerWidth = 195;
     private Screen returnTo;
     private int left;
     private int top;
@@ -64,7 +65,7 @@ public class SimulatedCreativeScreen extends Screen
             renderItemGroup(ItemGroup.GROUPS[i]);
         }
         textureManager.bindTexture(BACKGROUND_TEXTURE);
-        this.blit(left, top, 0, 0, containerWidth, containerHeight);
+        blit(left, top, 0, 0, containerWidth, containerHeight);
         textureManager.bindTexture(TAB_TEXTURE);
         renderItemGroup(ItemGroup.GROUPS[0]);
         GuiLighting.disable();
@@ -74,58 +75,39 @@ public class SimulatedCreativeScreen extends Screen
         blit(left + xpos, top + ypos, 0, 0, 12, 12);
         blit(left + xpos + 10, top + ypos, 12, 0, 12, 12);
         blitOffset = 0;
-        drawCenteredString("Page Button Mover", width / 2, top - 40, 5636095);
+        font.drawWithShadow("Page Button Mover", width / 2f - font.getStringWidth("Page Button Mover") / 2f, top - 40, 5636095);
     }
 
-    private void drawCenteredString(String msg, int x, int y, int color) { font.drawWithShadow(msg, x - font.getStringWidth(msg) / (float) 2, y, color); }
-
-    protected void renderItemGroup(ItemGroup itemGroup_1)
+    private void renderItemGroup(ItemGroup itemGroup_1)
     {
-        int column = itemGroup_1.getColumn();
-        int int_3 = 0;
-        int int_4 = this.left + 28 * column;
-        int int_5 = this.top;
-        if (itemGroup_1.getIndex() == 0)
-        {
-            int_3 += 32;
-        }
-
-        if (itemGroup_1.isSpecial())
-        {
-            int_4 = this.left + containerWidth - 28 * (6 - column);
-        }
-        else if (column > 0)
-        {
-            int_4 += column;
-        }
-
-        if (itemGroup_1.isTopRow())
-        {
-            int_5 -= 28;
-        }
+        final int column = itemGroup_1.getColumn();
+        int offY = 0;
+        int x = left + 28 * column;
+        int y = top;
+        if (itemGroup_1.getIndex() == 0) offY += 32;
+        if (itemGroup_1.isSpecial()) x = left + containerWidth - 28 * (6 - column);
+        else if (column > 0) x += column;
+        if (itemGroup_1.isTopRow()) y -= 28;
         else
         {
-            int_3 += 64;
-            int_5 += containerHeight - 4;
+            offY += 64;
+            y += containerHeight - 4;
         }
-
         RenderSystem.disableLighting();
-        this.blit(int_4, int_5, column * 28, int_3, 28, 32);
+        this.blit(x, y, column * 28, offY, 28, 32);
         if (minecraft.world != null)
         {
-
-            int_4 += 6;
-            int_5 += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
+            x += 6;
+            y += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
             GuiLighting.enableForItems();
             RenderSystem.enableLighting();
             RenderSystem.enableRescaleNormal();
             ItemStack itemStack_1 = itemGroup_1.getIcon();
-            this.itemRenderer.renderGuiItem(itemStack_1, int_4, int_5);
-            this.itemRenderer.renderGuiItemOverlay(this.font, itemStack_1, int_4, int_5);
+            this.itemRenderer.renderGuiItem(itemStack_1, x, y);
+            this.itemRenderer.renderGuiItemOverlay(this.font, itemStack_1, x, y);
             RenderSystem.disableLighting();
         }
     }
-
 
     @Override
     public void onClose()
