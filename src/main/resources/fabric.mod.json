@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "creativebuttonmover",
+  "version": "${version}",
+  "name": "CreativeButtonMover",
+  "description": "Allows you to move the creative page buttons added by fabric-api.",
+  "authors": [
+    "NinjaPhenix"
+  ],
+  "license": "MIT",
+  "icon": "assets/creativebuttonmover/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "ninjaphenix.creativebuttonmover.client.CreativeButtonMover::loadValues"
+    ],
+    "modmenu": [
+      "ninjaphenix.creativebuttonmover.client.CreativeButtonMoverModMenuPlugin"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "creativebuttonmover.mixins.client.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.6.0",
+    "fabric": ">=0.3.2"
+  },
+  "custom": {
+    "modmenu:clientsideOnly": true
+  }
+}
