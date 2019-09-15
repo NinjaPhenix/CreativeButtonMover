@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "creativebuttonmover",
   "version": "${version}",
-  "name": "CreativeButtonMover",
+  "name": "Creative Button Mover",
   "description": "Allows you to move the creative page buttons added by fabric-api.",
   "authors": [
     "NinjaPhenix"
