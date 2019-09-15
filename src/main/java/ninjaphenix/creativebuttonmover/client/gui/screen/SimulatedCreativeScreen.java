@@ -71,7 +71,7 @@ public class SimulatedCreativeScreen extends Screen
         textureManager.bindTexture(BUTTON_TEXTURE);
         blit(left + xpos, top + ypos, 0, 0, 12, 12);
         blit(left + xpos + 10, top + ypos, 12, 0, 12, 12);
-        drawCenteredString("Creative Button Mover", width / 2, top - 40, 5636095);
+        drawCenteredString("Page Button Mover", width / 2, top - 40, 5636095);
     }
 
     private void drawCenteredString(String msg, int x, int y, int color) { font.drawWithShadow(msg, x - font.getStringWidth(msg) / (float) 2, y, color); }
