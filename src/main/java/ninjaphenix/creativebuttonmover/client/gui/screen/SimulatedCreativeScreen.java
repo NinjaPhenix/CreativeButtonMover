@@ -7,6 +7,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.GuiLighting;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import ninjaphenix.creativebuttonmover.client.CreativeButtonMover;
@@ -37,7 +38,7 @@ public class SimulatedCreativeScreen extends Screen
     protected void init()
     {
         super.init();
-        this.addButton(new ButtonWidget(width / 2 - 25, height / 2 + 100, 50, 20, "Close", (widget) -> onClose()));
+        this.addButton(new ButtonWidget(width / 2 - 50, height / 2 + 96, 100, 20, "Close", (widget) -> onClose()));
     }
 
     @Override
@@ -69,8 +70,10 @@ public class SimulatedCreativeScreen extends Screen
         GuiLighting.disable();
         RenderSystem.disableAlphaTest();
         textureManager.bindTexture(BUTTON_TEXTURE);
+        blitOffset = 200;
         blit(left + xpos, top + ypos, 0, 0, 12, 12);
         blit(left + xpos + 10, top + ypos, 12, 0, 12, 12);
+        blitOffset = 0;
         drawCenteredString("Page Button Mover", width / 2, top - 40, 5636095);
     }
 
@@ -108,6 +111,19 @@ public class SimulatedCreativeScreen extends Screen
 
         RenderSystem.disableLighting();
         this.blit(int_4, int_5, column * 28, int_3, 28, 32);
+        if (minecraft.world != null)
+        {
+
+            int_4 += 6;
+            int_5 += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
+            GuiLighting.enableForItems();
+            RenderSystem.enableLighting();
+            RenderSystem.enableRescaleNormal();
+            ItemStack itemStack_1 = itemGroup_1.getIcon();
+            this.itemRenderer.renderGuiItem(itemStack_1, int_4, int_5);
+            this.itemRenderer.renderGuiItemOverlay(this.font, itemStack_1, int_4, int_5);
+            RenderSystem.disableLighting();
+        }
     }
 
 
