@@ -26,6 +26,7 @@ public class SimulatedCreativeScreen extends Screen
     private int top;
     private int xpos;
     private int ypos;
+    private boolean dragging;
 
     public SimulatedCreativeScreen(Screen parent)
     {
@@ -43,11 +44,37 @@ public class SimulatedCreativeScreen extends Screen
     }
 
     @Override
-    public boolean mouseDragged(double double_1, double double_2, int int_1, double double_3, double double_4)
+    public boolean mouseClicked(double x, double y, int int_1)
     {
-        xpos = (int) double_1 - left - 24;
-        ypos = (int) double_2 - top - 11;
-        return false;
+        dragging = inPageButtonArea(x, y);
+        if (dragging) return true;
+        return super.mouseClicked(x, y, int_1);
+    }
+
+    @Override
+    public boolean mouseReleased(double x, double y, int int_1)
+    {
+        dragging = false;
+        return super.mouseReleased(x, y, int_1);
+    }
+
+    @Override
+    public boolean mouseDragged(double x, double y, int int_1, double double_3, double double_4)
+    {
+        if(dragging)
+        {
+            xpos = (int) x - left - 11;
+            ypos = (int) y - top - 6;
+            return true;
+        }
+        return super.mouseDragged(x, y, int_1, double_3, double_4);
+    }
+
+    private boolean inPageButtonArea(double x, double y)
+    {
+        final int l = left + xpos;
+        final int t = top + ypos;
+        return x >= l && x <= l + 19 && y <= t + 11 && y >= t;
     }
 
     @Override
