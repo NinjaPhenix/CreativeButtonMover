@@ -1,6 +1,6 @@
 package ninjaphenix.creativebuttonmover.client.gui.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -84,8 +84,8 @@ public class SimulatedCreativeScreen extends Screen
         super.render(int_1, int_2, float_1);
         left = (this.width - containerWidth) / 2;
         top = (this.height - containerHeight) / 2;
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.enableAlphaTest();
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.enableAlphaTest();
         for (int i = 1; i < 12; i++)
         {
             textureManager.bindTexture(TAB_TEXTURE);
@@ -96,7 +96,7 @@ public class SimulatedCreativeScreen extends Screen
         textureManager.bindTexture(TAB_TEXTURE);
         renderItemGroup(ItemGroup.GROUPS[0]);
         GuiLighting.disable();
-        RenderSystem.disableAlphaTest();
+        GlStateManager.disableAlphaTest();
         textureManager.bindTexture(BUTTON_TEXTURE);
         blitOffset = 200;
         blit(left + xpos, top + ypos, 0, 0, 12, 12);
@@ -120,19 +120,19 @@ public class SimulatedCreativeScreen extends Screen
             offY += 64;
             y += containerHeight - 4;
         }
-        RenderSystem.disableLighting();
+        GlStateManager.disableLighting();
         this.blit(x, y, column * 28, offY, 28, 32);
         if (minecraft.world != null)
         {
             x += 6;
             y += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
             GuiLighting.enableForItems();
-            RenderSystem.enableLighting();
-            RenderSystem.enableRescaleNormal();
+            GlStateManager.enableLighting();
+            GlStateManager.enableRescaleNormal();
             ItemStack itemStack_1 = itemGroup_1.getIcon();
             this.itemRenderer.renderGuiItem(itemStack_1, x, y);
             this.itemRenderer.renderGuiItemOverlay(this.font, itemStack_1, x, y);
-            RenderSystem.disableLighting();
+            GlStateManager.disableLighting();
         }
     }
 
