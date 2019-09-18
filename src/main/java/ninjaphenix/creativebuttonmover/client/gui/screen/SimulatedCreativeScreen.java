@@ -61,7 +61,7 @@ public class SimulatedCreativeScreen extends Screen
     @Override
     public boolean mouseDragged(double x, double y, int int_1, double double_3, double double_4)
     {
-        if(dragging)
+        if (dragging)
         {
             xpos = (int) x - left - 11;
             ypos = (int) y - top - 6;
