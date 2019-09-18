@@ -8,7 +8,9 @@
     "NinjaPhenix"
   ],
   "contact": {
-    "sources": "https://github.com/NinjaPhenix/CreativeButtonMover/"
+    "sources": "https://github.com/NinjaPhenix/CreativeButtonMover/",
+    "homepage": "https://github.com/NinjaPhenix/CreativeButtonMover/",
+    "issues": "https://github.com/NinjaPhenix/CreativeButtonMover/issues"
   },
   "license": "MIT",
   "icon": "assets/creativebuttonmover/icon.png",
@@ -28,7 +30,7 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.6.0",
+    "fabricloader": ">=0.6.1",
     "fabric": ">=0.3.2"
   },
   "custom": {
