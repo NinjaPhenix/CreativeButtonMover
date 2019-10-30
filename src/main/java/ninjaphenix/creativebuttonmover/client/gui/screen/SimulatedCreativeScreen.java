@@ -10,6 +10,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MatrixStack;
 import ninjaphenix.creativebuttonmover.client.CreativeButtonMover;
 
 @SuppressWarnings("ConstantConditions")
@@ -98,10 +99,10 @@ public class SimulatedCreativeScreen extends Screen
         GuiLighting.disable();
         RenderSystem.disableAlphaTest();
         textureManager.bindTexture(BUTTON_TEXTURE);
-        blitOffset = 200;
+        setBlitOffset(200);
         blit(left + xpos, top + ypos, 0, 0, 12, 12);
         blit(left + xpos + 10, top + ypos, 12, 0, 12, 12);
-        blitOffset = 0;
+        setBlitOffset(0);
         font.drawWithShadow("Page Button Mover", width / 2f - font.getStringWidth("Page Button Mover") / 2f, top - 40, 5636095);
     }
 
@@ -126,7 +127,7 @@ public class SimulatedCreativeScreen extends Screen
         {
             x += 6;
             y += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
-            GuiLighting.enableForItems();
+            GuiLighting.enableForItems(new MatrixStack().peek());
             RenderSystem.enableLighting();
             RenderSystem.enableRescaleNormal();
             ItemStack itemStack_1 = itemGroup_1.getIcon();
