@@ -6,11 +6,11 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.GuiLighting;
 import net.minecraft.client.texture.TextureManager;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MatrixStack;
 import ninjaphenix.creativebuttonmover.client.CreativeButtonMover;
 
 @SuppressWarnings("ConstantConditions")
@@ -127,7 +127,7 @@ public class SimulatedCreativeScreen extends Screen
         {
             x += 6;
             y += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
-            GuiLighting.enableForItems(new MatrixStack().peek());
+            GuiLighting.enableForItems(new MatrixStack().peek().getModel());
             RenderSystem.enableLighting();
             RenderSystem.enableRescaleNormal();
             ItemStack itemStack_1 = itemGroup_1.getIcon();
