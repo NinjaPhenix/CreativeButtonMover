@@ -1,6 +1,10 @@
 package ninjaphenix.creativebuttonmover.client;
 
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,16 +14,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-@SuppressWarnings("SpellCheckingInspection")
 public class CreativeButtonMover
 {
     private static final Logger LOGGER = LogManager.getLogger();
     public static Integer x;
     public static Integer y;
 
-    @SuppressWarnings("unused")
     public static void loadValues()
     {
+        //noinspection ConstantConditions
+        if (false)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                FabricItemGroupBuilder.build(new Identifier("cbm", "item_group_" + i), () -> new ItemStack(Items.DIAMOND));
+            }
+        }
+
         try (FileInputStream inputStream = new FileInputStream(new File(FabricLoader.getInstance().getConfigDirectory(), "creativebuttonmover.properties")))
         {
             Properties props = new Properties();

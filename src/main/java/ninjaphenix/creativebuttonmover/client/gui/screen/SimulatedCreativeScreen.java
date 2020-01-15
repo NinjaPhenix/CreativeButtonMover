@@ -4,13 +4,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.render.GuiLighting;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MatrixStack;
 import ninjaphenix.creativebuttonmover.client.CreativeButtonMover;
 
 @SuppressWarnings("ConstantConditions")
@@ -96,7 +94,6 @@ public class SimulatedCreativeScreen extends Screen
         blit(left, top, 0, 0, containerWidth, containerHeight);
         textureManager.bindTexture(TAB_TEXTURE);
         renderItemGroup(ItemGroup.GROUPS[0]);
-        GuiLighting.disable();
         RenderSystem.disableAlphaTest();
         textureManager.bindTexture(BUTTON_TEXTURE);
         setBlitOffset(200);
@@ -121,20 +118,38 @@ public class SimulatedCreativeScreen extends Screen
             offY += 64;
             y += containerHeight - 4;
         }
-        RenderSystem.disableLighting();
         this.blit(x, y, column * 28, offY, 28, 32);
         if (minecraft.world != null)
         {
             x += 6;
             y += 8 + (itemGroup_1.isTopRow() ? 1 : -1);
-            GuiLighting.enableForItems(new MatrixStack().peek());
-            RenderSystem.enableLighting();
             RenderSystem.enableRescaleNormal();
             ItemStack itemStack_1 = itemGroup_1.getIcon();
             this.itemRenderer.renderGuiItem(itemStack_1, x, y);
             this.itemRenderer.renderGuiItemOverlay(this.font, itemStack_1, x, y);
-            RenderSystem.disableLighting();
         }
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers)
+    {
+        if (keyCode == 262)
+        {
+            xpos++; return true;
+        }
+        else if (keyCode == 263)
+        {
+            xpos--; return true;
+        }
+        else if (keyCode == 264)
+        {
+            ypos++; return true;
+        }
+        else if (keyCode == 265)
+        {
+            ypos--; return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
     @Override

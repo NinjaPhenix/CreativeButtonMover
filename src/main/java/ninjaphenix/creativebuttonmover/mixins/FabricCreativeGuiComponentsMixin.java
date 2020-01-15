@@ -1,7 +1,7 @@
 package ninjaphenix.creativebuttonmover.mixins;
 
-import net.fabricmc.fabric.impl.itemgroup.CreativeGuiExtensions;
-import net.fabricmc.fabric.impl.itemgroup.FabricCreativeGuiComponents;
+import net.fabricmc.fabric.impl.item.group.CreativeGuiExtensions;
+import net.fabricmc.fabric.impl.item.group.FabricCreativeGuiComponents;
 import ninjaphenix.creativebuttonmover.client.CreativeButtonMover;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
