@@ -8,9 +8,9 @@ import java.util.function.Function;
 
 public class CreativeButtonMoverModMenuPlugin implements ModMenuApi
 {
-    @Override
-    public String getModId() { return "creativebuttonmover"; }
+	@Override
+	public String getModId() { return "creativebuttonmover"; }
 
-    @Override
-    public Function<Screen, ? extends Screen> getConfigScreenFactory() { return SimulatedCreativeScreen::new; }
+	@Override
+	public Function<Screen, ? extends Screen> getConfigScreenFactory() { return SimulatedCreativeScreen::new; }
 }

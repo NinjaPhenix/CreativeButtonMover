@@ -1,40 +1,40 @@
 {
-  "schemaVersion": 1,
-  "id": "creativebuttonmover",
-  "version": "${version}",
-  "name": "Creative Button Mover",
-  "description": "Allows you to move the creative page buttons added by fabric-api.",
-  "authors": [
-    "NinjaPhenix"
-  ],
-  "contact": {
-    "sources": "https://github.com/NinjaPhenix/CreativeButtonMover/",
-    "homepage": "https://github.com/NinjaPhenix/CreativeButtonMover/",
-    "issues": "https://github.com/NinjaPhenix/CreativeButtonMover/issues"
-  },
-  "license": "MIT",
-  "icon": "assets/creativebuttonmover/icon.png",
-  "environment": "client",
-  "entrypoints": {
-    "client": [
-      "ninjaphenix.creativebuttonmover.client.CreativeButtonMover::loadValues"
-    ],
-    "modmenu": [
-      "ninjaphenix.creativebuttonmover.client.CreativeButtonMoverModMenuPlugin"
-    ]
-  },
-  "mixins": [
-    {
-      "config": "creativebuttonmover.mixins.client.json",
-      "environment": "client"
-    }
-  ],
-  "depends": {
-    "fabricloader": ">=0.7.0",
-    "fabric": ">=0.4.25",
-    "minecraft": ">=1.15.1"
-  },
-  "custom": {
-    "modmenu:clientsideOnly": true
-  }
+	"schemaVersion": 1,
+	"id": "creativebuttonmover",
+	"version": "${version}",
+	"name": "Creative Button Mover",
+	"description": "Allows you to move the creative page buttons added by fabric-api.\nCan be moved with either mouse or arrow keys.",
+	"authors": [
+		"NinjaPhenix"
+	],
+	"contact": {
+		"sources": "https://github.com/NinjaPhenix/CreativeButtonMover/",
+		"homepage": "https://github.com/NinjaPhenix/CreativeButtonMover/",
+		"issues": "https://github.com/NinjaPhenix/CreativeButtonMover/issues"
+	},
+	"license": "MIT-0",
+	"icon": "assets/creativebuttonmover/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"ninjaphenix.creativebuttonmover.client.CreativeButtonMover::loadValues"
+		],
+		"modmenu": [
+			"ninjaphenix.creativebuttonmover.client.CreativeButtonMoverModMenuPlugin"
+		]
+	},
+	"mixins": [
+		{
+			"config": "creativebuttonmover.mixins.client.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.7.0",
+		"fabric": ">=0.4.29",
+		"minecraft": ">=1.15.2"
+	},
+	"custom": {
+		"modmenu:clientsideOnly": true
+	}
 }
