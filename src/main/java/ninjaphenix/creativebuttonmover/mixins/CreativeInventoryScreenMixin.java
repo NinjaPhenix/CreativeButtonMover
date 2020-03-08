@@ -14,13 +14,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = CreativeInventoryScreen.class, priority = Integer.MAX_VALUE)
-public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScreen<CreativeInventoryScreen.CreativeContainer>
+public abstract class CreativeInventoryScreenMixin extends AbstractInventoryScreen<CreativeInventoryScreen.CreativeScreenHandler>
 {
 	private final CreativeGuiExtensions ext = (CreativeGuiExtensions) this;
 	private PageSwitchWidget prevButton;
 	private PageSwitchWidget nextButton;
 
-	public CreativeInventoryScreenMixin(CreativeInventoryScreen.CreativeContainer container, PlayerInventory playerInventory, Text text)
+	public CreativeInventoryScreenMixin(CreativeInventoryScreen.CreativeScreenHandler container, PlayerInventory playerInventory, Text text)
 	{
 		super(container, playerInventory, text);
 	}
